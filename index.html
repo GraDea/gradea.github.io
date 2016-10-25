@@ -225,4 +225,16 @@
         svg.openTag,
         piecePaths,
         svg.closeTag
+      ].join("");
+
+      $("#container").empty().append($(svgNode));
+    
+    
+    }
+
+    $('input').change(generate);
+
+    generate();
+  });
+</script>
 </html>
