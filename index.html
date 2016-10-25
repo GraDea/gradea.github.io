@@ -208,7 +208,7 @@
 
   // SVG helpers
   var svg = {
-    openTag: '<svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="' + width + '" height="' + height + '">',
+    openTag: '<svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="' + parseInt($("#width").val(), 10) + '" height="' + parseInt($("#height").val(), 10) + '">',
     closeTag: '</svg>',
     path: function(pathData) {
       return '<path vector-effect="non-scaling-stroke" d="' + pathData + '"/>';
