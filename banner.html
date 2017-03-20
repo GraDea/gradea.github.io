@@ -3,33 +3,35 @@
         crossorigin="anonymous"></script>
 <script src="https://yastatic.net/pcode/adfox/loader.js"></script>
 <script>
-
-    function getCookie(name) {
-        var value = "; " + document.cookie;
-        var parts = value.split("; " + name + "=");
-        if (parts.length == 2) return parts.pop().split(";").shift();
-    }
+    var mosTizer = window.mosTizer||
+        {
+            getCookie: function getCookie(name) {
+                var value = "; " + document.cookie;
+                var parts = value.split("; " + name + "=");
+                if (parts.length == 2) return parts.pop().split(";").shift();
+            }
+        };
 </script>
-
-
 <div class="right-block col-md-12 col-sm-8 col-xs-12">
     <script type="text/javascript">
-        var mos_id = getCookie("mos_id");
+        var mos_id = mosTizer.getCookie("mos_id");
         var segmentArr = [];
         if(mos_id){
-            $.get("https://www.mos.ru/api/newsfeed/v4/frontend/json/ru/segments/" + mos_id , function (result) {
+            jQuery.get("https://www.mos.ru/api/newsfeed/v4/frontend/json/ru/segments/" + mos_id , function (result) {
                     segmentArr = result;
                 }
             );
-            var segmentQueryRawData = '';
         }
         if (segmentArr.length > 0) {
             preparedArr = {};
-            $.each(segmentArr, function (index, paramValue) {
+            jQuery.each(segmentArr, function (index, paramValue) {
                 preparedArr['puid' + paramValue.segmentId] = paramValue.value;
             });
-            segmentQueryRawData = '&' + $.param(preparedArr);
         }
+        if(mos_id){
+            preparedArr["mosId"] = mos_id;
+        }
+        segmentQueryRawData = '&' + jQuery.param(preparedArr);
         var addate = new Date();
         var html = '<iframe src="//ads.adfox.ru/255877/getCode?pp=h&ps=cllr&p2=bg&p3=a&pr=' + pr + '&pt=b&pd=' + addate.getDate() +
             '&pw=' + addate.getDay() + '&pv=' + addate.getHours() + '&pv=' + addate.getHours() + segmentQueryRawData +
