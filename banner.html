@@ -16,12 +16,14 @@ function getCookie(name) {
   <script type="text/javascript">
   var mos_id = getCookie("mos_id");
   var segmentArr = [];
+        if(mos_id){
   $.get("https://www.mos.ru/api/segments/" + mos_id , function (result) {
                   segmentArr = result;
                   
               }
           );
-   var segmentQueryRawData = '';       
+   var segmentQueryRawData = ''; 
+        }
   if (segmentArr.length > 0) {
                       preparedArr = {};
                       $.each(segmentArr, function (index, paramValue) {
