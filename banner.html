@@ -22,8 +22,8 @@
                 }
             );
         }
+        preparedArr = {};
         if (segmentArr.length > 0) {
-            preparedArr = {};
             jQuery.each(segmentArr, function (index, paramValue) {
                 preparedArr['puid' + paramValue.segmentId] = paramValue.value;
             });
