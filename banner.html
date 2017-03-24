@@ -18,7 +18,7 @@
         var segmentArr = [];
             mos_id="SDfsafa";
         if(mos_id){
-            jQuery.get("https://www.mos.ru/api/newsfeed/v4/frontend/json/ru/segments/" + mos_id , function (result) {
+            jQuery.get("https://www.mos.ru/api/segments/v4/frontend/json/ru/segments/" + mos_id , function (result) {
                     segmentArr = result;
                 }
             );
