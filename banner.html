@@ -1,25 +1,42 @@
-<!--В head сайта один раз подключите библиотеку-->
+<script src="https://code.jquery.com/jquery-1.12.4.js"
+        integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU="
+        crossorigin="anonymous"></script>
 <script src="https://yastatic.net/pcode/adfox/loader.js"></script>
-
-<!--AdFox START-->
-<!--mos.ru-->
-<!--Площадка: mos.ru / Основной / перетяжка 2-->
-<!--Категория: <не задана>-->
-<!--Баннер: <не задана>-->
-<!--Тип баннера: responsive-->
-<div id="adfox_149087827722481017"></div>
 <script>
-    window.Ya.adfoxCode.create({
-        ownerId: 255877,
-        containerId: 'adfox_149087827722481017',
-        params: {
-            p1: 'bwxbv',
-            p2: 'foqo',
-            pfc: 'blgqs',
-            pfb: 'elowt',
-            puid1: '',
-            puid2: '',
-            puid3: ''
-        }
-    });
+    var mosTizer = window.mosTizer||
+        {
+            getCookie: function getCookie(name) {
+                var value = "; " + document.cookie;
+                var parts = value.split("; " + name + "=");
+                if (parts.length == 2) return parts.pop().split(";").shift();
+            }
+        };
 </script>
+<div class="right-block col-md-12 col-sm-8 col-xs-12">
+    <script type="text/javascript">
+        var mos_id = mosTizer.getCookie("mos_id");
+        var segmentArr = [];
+        if(mos_id){
+            jQuery.get("https://www.mos.ru/api/segments/v4/frontend/json/ru/segments/" + mos_id , function (result) {
+                    segmentArr = result; 
+                }
+            );
+        }
+        preparedArr = {};
+        if (segmentArr.length > 0) {
+            jQuery.each(segmentArr, function (index, paramValue) {
+                preparedArr['puid' + paramValue.segmentId] = paramValue.value;
+            });
+        }
+        if(mos_id){
+            preparedArr["mosId"] = mos_id;
+        }
+        segmentQueryRawData = '&' + jQuery.param(preparedArr);
+        var addate = new Date();
+        var html = '<iframe src="//ads.adfox.ru/255877/getCode?pp=h&ps=cllr&p2=bg&p3=a&pt=b&pd=' + addate.getDate() +
+            '&pw=' + addate.getDay() + '&pv=' + addate.getHours() + '&pv=' + addate.getHours() + segmentQueryRawData +
+            '" frameBorder="0" width="100%" height="100%" marginWidth="0" marginHeight="0" scrolling="no" style="border: 0px; margin: 0px; padding: 0px;"><a href="//ads.adfox.ru/255877/goDefaultLink?pp=h&ps=cllr&p2=bg" target="_top"><img src="//ads.adfox.ru/255877/getDefaultImage?pp=h&ps=cllr&p2=bg" border="0" alt=""><\\/a><\/iframe>';
+        document.write(html);
+
+    </script>
+</div>
