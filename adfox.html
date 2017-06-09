@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<textarea cols=50 rows=50 id="bannerCode" placeholder="вставьте код уровня размещения">
+    window.Ya.adfoxCode.createAdaptive({
+        ownerId: 255877,
+        containerId: 'adfox_149139217099277493',
+        params: {
+            p1: 'bwwwf',
+            p2: 'foqo',
+            pfc: 'blgqs',
+            pfb: 'elotx',
+            puid1: '',
+            puid2: '',
+            puid3: ''
+        }
+    }, ['desktop', 'tablet', 'phone'], {
+        tabletWidth: 830,
+        phoneWidth: 480,
+        isAutoReloads: false
+    });
+</textarea>
+<textarea id="result" cols="50" rows="50"></textarea>
+<script>
+    const includeMatchIntoObject = (obj, match) => {
+        const [name, value] = match.replace(/'/g, '').split(/:\s*/);
+        return Object.assign({}, obj, {[name]: isNaN(value) ? value : parseInt(value, 10)});
+    };
+
+    const resultTextarea = document.getElementById('result');
+
+    document.getElementById('bannerCode').addEventListener('input', function () {
+        let result = {};
+        const code = this.value;
+        result.scroll = /createScroll/.test(code);
+        result.adaptive = code.match(/(desktop|tablet|phone)\b/g);
+        if (result.adaptive) {
+            result.adaptiveOptions = code.match(/((tablet|phone)Width:\s*\d+)/g).reduce(includeMatchIntoObject, {});
+        }
+        result.placementParams = code.match(/((p1|p2):\s*(['"]\w+['"]))/g).reduce(includeMatchIntoObject, {});
+
+        resultTextarea.value = `<div data-mos-teaser='${JSON.stringify(result)}'></div>`;
+    });
+
+</script>
+</body>
+</html>
