@@ -1,9 +1,8 @@
 !function ($) {
 	//=================================== scroll  ===================================//
 
-$body.scrollspy({
-      target: '#navbar-main',
-      offset: navHeight
+$('body').scrollspy({
+      target: '#navbar-main'
     })
 
     $window.on('load', function () {
@@ -15,4 +14,4 @@ $body.scrollspy({
     })
 
 
-});
+};
