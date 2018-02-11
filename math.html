@@ -1,0 +1,44 @@
+<html>
+<body>
+
+<h2>РЕШИ ВСЕ ЗАДАЧИ И ПОЛУЧИ СЕКРЕТНЫЙ КОД!</h2>
+
+<div>В  одной  коробке  было  18  кг  яблок,  что  на  7  кг  меньше,  чем  во  второй  коробке. Сколько  кг  яблок  было  во  второй  коробке?</div>
+<div><input id="t1" onkeyup="check()"/></div>
+
+
+<div> В  первой  корзине  лежало  24  перца.  Это  в  3  раза  больше,  чем  во  второй  корзине.  Сколько  перцов  лежало  в  двух  корзинах?</div>
+<div><input id="t2" onkeyup="check()"/></div>
+
+
+<div>Группа  ребят  отправилась  на  экскурсию.  В  первом  автобусе  ехало  20  детей,    во  втором  автобусе  на  6  человек  больше,  чем  в  первом,  а  в  третьем  автобусе  на  7  человек  меньше,  чем  во  втором  автобусе. Сколько  человек  ехало  в  третьем  автобусе?</div>
+<div><input id="t3" onkeyup="check()"/></div>
+
+
+<div>В   первом  ряду  сидело  12  человек,  что  на  2  человека  больше,  чем  во  втором  ряду,  а  в  третьем  ряду  в  2  раза  меньше,  чем  в  первом  ряду.  Сколько  всего  человек  в  классе?</div>
+
+<div><input id="t4" onkeyup="check()"/></div>
+<div id="link" style="display: none;">
+Отлично, все верно!
+<a href = "http://t.me/qwsfdbot?start=reshil">НАЖИМАЙ!</a>
+</div>
+<script>
+function check(){
+	var v1 = document.getElementById('t1').value; //25
+	var v2 = document.getElementById('t2').value; //32
+	var v3 = document.getElementById('t3').value; //19
+	var v4 = document.getElementById('t4').value; //28
+	if(v1 == 25 &&
+	v2==32 &&
+	v3==19 &&
+	v4 ==28
+	){
+	 document.getElementById("link").style.display="block";
+	 } else {
+	 document.getElementById("link").style.display="none";}
+	
+}
+</script>
+</body>
+<html>
+
